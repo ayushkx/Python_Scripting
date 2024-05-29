@@ -2,23 +2,23 @@ import re
 def identify_comment(code , lang):
     patterns = {
         'python':{
-            'single_line': r'#.*',
+            'single_line': r'#[^\n\r]+',
             'multi_line': r'\'\'\'.*?\'\'\'|\"\"\".*?\"\"\"',
         },
         'c_cpp':{
-            'single_line': r'//*',
+            'single_line': r'\/\/[^\n\r]+',
             'multi_line': r'/\*.*?\*/',
         },
         'java':{
-            'single_line': r'//*',
+            'single_line': r'\/\/[^\n\r]+',
             'multi_line': r'/\*.*?\*/',
         },
         'javascript':{
-            'single_line': r'//*',
+            'single_line': r'\/\/[^\n\r]+',
             'multi_line': r'/\*.*?\*/',
         },
         'go':{
-            'single_line': r'//*',
+            'single_line': r'\/\/[^\n\r]+',
             'multi_line': r'/\*.*?\*/',
         },
     }
@@ -35,6 +35,11 @@ def identify_comment(code , lang):
     comments = single_line_comment + multi_line_comment
 
     return comments
+
+def remove_char(text):
+    doc_text = re.findall('[a-z A-Z]*',text,re.DOTALL)
+    return doc_text
+
 
 source_code = """
 # One Python statement in one line, terminated by a newline.
