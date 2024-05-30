@@ -32,12 +32,18 @@ def identify_comment(code , lang):
     single_line_comment = re.findall(Single_line_pattern , code , re.DOTALL)
     multi_line_comment = re.findall(multi_line_pattern , code , re.DOTALL)
 
-    comments = single_line_comment + multi_line_comment
+    list_comments = single_line_comment + multi_line_comment
+    # comments = ''
 
-    return comments
+    # for i in list_comments:
+    #     comments = comments + i + '\n'
+
+    return list_comments
 
 def remove_char(text):
-    doc_text = re.findall('[a-z A-Z]*',text,re.DOTALL)
+    doc_text=[]
+    for i in text:
+        doc_text.append(re.sub(r'/\*|\*/|\/\/|\#|\'\'\'|\r?\n','',i))
     return doc_text
 
 
@@ -87,21 +93,15 @@ console.log( "This line is executed by the compiler." );
 """
 
 python_comments = identify_comment(source_code , 'python')
-print('comments are :')
-for comment in python_comments:
-    print(comment)
+python_comments = remove_char(python_comments)
+print(f'comments are :{python_comments}')
 
-c_cpp_comments = identify_comment(source_code , 'c_cpp')
-print('comments are :')
-for comment in c_cpp_comments:
-    print(comment)
+# c_cpp_comments = identify_comment(source_code , 'c_cpp')
+# print(f'comments are :{c_cpp_comments}')
 
-java_comments = identify_comment(source_code , 'java')
-print('comments are :')
-for comment in java_comments:
-    print(comment)
 
-javascript_comments = identify_comment(source_code , 'javascript')
-print('comments are :')
-for comment in javascript_comments:
-    print(comment)
+# java_comments = identify_comment(source_code , 'java')
+# print(f'comments are :{java_comments}')
+
+# javascript_comments = identify_comment(source_code , 'javascript')
+# print(f'comments are :{javascript_comments}')
