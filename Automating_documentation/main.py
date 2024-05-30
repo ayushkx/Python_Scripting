@@ -46,6 +46,13 @@ def remove_char(text):
         doc_text.append(re.sub(r'/\*|\*/|\/\/|\#|\'\'\'|\r?\n','',i))
     return doc_text
 
+def generate_markdown(comment):
+    markdown_doc = "##Documentation of the following code\n\n"
+    for i in comment:
+        markdown_doc += f" -{i}\n"
+
+    return markdown_doc
+
 
 source_code = """
 # One Python statement in one line, terminated by a newline.
@@ -91,17 +98,35 @@ console.log( "This line is executed by the compiler." );
 */
 
 """
+lang = input("Please enter the language (python , c_cpp , java , javascript): ")
 
-python_comments = identify_comment(source_code , 'python')
-python_comments = remove_char(python_comments)
-print(f'comments are :{python_comments}')
+markdown = ''
 
-# c_cpp_comments = identify_comment(source_code , 'c_cpp')
-# print(f'comments are :{c_cpp_comments}')
+if lang == "python" :
+    python_comments = identify_comment(source_code , lang)
+    python_comments = remove_char(python_comments)
+    print(f'comments are :{python_comments}')
+    markdown = generate_markdown(python_comments)
 
+elif lang == "c_cpp":
+    c_cpp_comments = identify_comment(source_code ,lang)
+    c_cpp_comments= remove_char(c_cpp_comments)
+    print(f'comments are :{c_cpp_comments}')
+    markdown = generate_markdown(c_cpp_comments)
 
-# java_comments = identify_comment(source_code , 'java')
-# print(f'comments are :{java_comments}')
+elif lang == "java":
+    java_comments = identify_comment(source_code , lang)
+    java_comments = remove_char(java_comments)
+    print(f'comments are :{java_comments}')
+    markdown = generate_markdown(java_comments)
 
-# javascript_comments = identify_comment(source_code , 'javascript')
-# print(f'comments are :{javascript_comments}')
+elif lang == "javascript":
+    javascript_comments = identify_comment(source_code , lang)
+    javascript_comments = remove_char(javascript_comments)
+    print(f'comments are :{javascript_comments}')
+    markdown = generate_markdown(javascript_comments)
+
+#markdown = generate_markdown(python_comments)
+
+with open("Documentation.md" , 'w') as file:
+    file.write(markdown)
