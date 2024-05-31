@@ -152,16 +152,16 @@ with open("Documentation.md" , 'w') as file:
 # <br>
 
 # #### script will fetch the volume getting backed up from storage servers. Line 2 to 16 - Fetching all volume which are getting backed up details .
-# ![image](https://github.com/ExxonMobil/Volumes_backed_up/assets/58135144/20d8a9e3-6d8d-4539-8ee8-63c9b5550207)
+#
 # <br>
 # <hr>
 
 # #### appending data's in csv file Line 18 to 28 -
 
-# ![image](https://github.com/ExxonMobil/Volumes_backed_up/assets/58135144/89cdfac6-8358-46f3-a45b-d482078073c8)
+#
 # <br>
 # <hr>
 
 #  #### Once above stpes done the team will get an email with all result files. Email sending part with attachment Line 30 to 52
 
-# ![image](https://github.com/ExxonMobil/Volumes_backed_up/assets/58135144/06296766-2115-4bf8-b225-ae39d7a5f7b8)
+#
